@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package watrix.proto;
+
+message LidarPoint {
+  optional double x = 1;  // in meters.
+  optional double y = 2;  // in meters.
+  optional double z = 3;  // height in meters.
+  optional double intensity = 4; // lidar intensity
+}
+
+message PointCloud {
+  optional uint64 timestamp_msec = 1;  // Header
+	repeated LidarPoint points = 2; // lidar point cloud
+}

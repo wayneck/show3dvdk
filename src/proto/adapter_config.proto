@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package watrix.proto;
+
+message AdapterConfig {
+  enum MessageType {
+    POINT_CLOUD = 1;
+    VLP16_POINT_CLOUD = 2;
+	  CAMERA_IMAGE = 3;
+    TRAIN_SEG_RESULT = 4;
+    YOLO_DETECTION_RESULT = 5;
+    SYNC_CAMERA_RESULT = 6;
+  }
+  enum Mode {
+    RECEIVE_ONLY = 0;
+    PUBLISH_ONLY = 1;
+    DUPLEX = 2;
+  }
+  required MessageType type = 1;
+  required Mode mode = 2;
+  optional int32 message_history_limit = 3 [default = 10];
+  optional string topic = 4;
+}
+
+message AdapterManagerConfig {
+  repeated AdapterConfig config = 1;
+}
